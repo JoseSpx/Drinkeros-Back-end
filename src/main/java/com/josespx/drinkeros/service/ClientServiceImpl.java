@@ -39,4 +39,9 @@ public class ClientServiceImpl implements ClientService {
     public void delete(Long id) {
         this.clientDao.deleteById(id);
     }
+
+    @Override
+    public List<Client> findAllByEliminatedEquals(String eliminated) {
+        return this.clientDao.findAllByEliminatedEquals(eliminated);
+    }
 }

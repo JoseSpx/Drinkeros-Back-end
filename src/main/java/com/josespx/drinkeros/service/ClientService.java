@@ -18,4 +18,7 @@ public interface ClientService extends Dao<Client, Long> {
 
     @Override
     void delete(Long id);
+
+    List<Client> findAllByEliminatedEquals(String eliminated);
+
 }

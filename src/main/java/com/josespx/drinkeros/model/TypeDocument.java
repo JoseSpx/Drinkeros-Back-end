@@ -1,21 +1,28 @@
 package com.josespx.drinkeros.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "type_document")
 public class TypeDocument {
 
+    public interface Basic {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView(Basic.class)
     private Long id;
 
     @Column(name = "name")
+    @JsonView(Basic.class)
     private String name;
 
-    @OneToOne(mappedBy = "typeDocument")
-    private Client client;
+    @OneToMany(mappedBy = "typeDocument")
+    private List<Client> clientList;
 
     public TypeDocument() {}
 
@@ -35,11 +42,11 @@ public class TypeDocument {
         this.name = name;
     }
 
-    public Client getClient() {
-        return client;
+    public List<Client> getClientList() {
+        return clientList;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 }

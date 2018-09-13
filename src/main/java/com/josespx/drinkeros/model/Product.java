@@ -1,35 +1,61 @@
 package com.josespx.drinkeros.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "product")
 public class Product {
 
+    public interface Basic {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView(Basic.class)
     private Long id;
 
     @Column(name = "codebar")
+    @JsonView(Basic.class)
     private String codebar;
 
     @Column(name = "name")
+    @JsonView(Basic.class)
     private String name;
 
     @Column(name = "brand")
+    @JsonView(Basic.class)
     private String brand;
 
     @Column(name = "description")
+    @JsonView(Basic.class)
     private String description;
 
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonView(Basic.class)
     private ProductPrice productPrice;
 
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonView(Basic.class)
     private ProductStock productStock;
 
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP default now()")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP default now()")
+    private LocalDateTime updatedAt;
+
+    @Column(name = "eliminated", length = 2, columnDefinition = "char(1) default '0'")
+    private String eliminated;
+
     public Product() {}
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -85,5 +111,29 @@ public class Product {
 
     public void setProductStock(ProductStock productStock) {
         this.productStock = productStock;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getEliminated() {
+        return eliminated;
+    }
+
+    public void setEliminated(String eliminated) {
+        this.eliminated = eliminated;
     }
 }
