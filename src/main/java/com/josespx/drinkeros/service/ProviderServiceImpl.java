@@ -38,4 +38,9 @@ public class ProviderServiceImpl implements ProviderService {
     public void delete(Long id) {
         this.providerDao.deleteById(id);
     }
+
+    @Override
+    public List<Provider> findAllByEliminatedEquals(String eliminated) {
+        return this.providerDao.findAllByEliminatedEquals(eliminated);
+    }
 }

@@ -56,8 +56,8 @@ public class Client {
 
     public Client() {}
 
-    @PrePersist
-    public void prePersist() {
+    @PreUpdate
+    public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
 

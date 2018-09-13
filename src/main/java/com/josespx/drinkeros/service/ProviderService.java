@@ -18,4 +18,6 @@ public interface ProviderService extends Dao<Provider, Long> {
 
     @Override
     void delete(Long id);
+
+    List<Provider> findAllByEliminatedEquals(String eliminated);
 }
