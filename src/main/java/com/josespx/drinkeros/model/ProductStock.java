@@ -1,23 +1,31 @@
 package com.josespx.drinkeros.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "product_stock")
 public class ProductStock {
 
+    public interface Basic {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView(Basic.class)
     private Long id;
 
     @Column(name = "realp")
+    @JsonView(Basic.class)
     private Double realp;
 
     @Column(name = "physical")
+    @JsonView(Basic.class)
     private Double physical;
 
     @Column(name = "minimim")
+    @JsonView(Basic.class)
     private Double minimun;
 
     @OneToOne(mappedBy = "productStock")

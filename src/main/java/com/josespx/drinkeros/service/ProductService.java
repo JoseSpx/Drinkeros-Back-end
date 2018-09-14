@@ -18,4 +18,6 @@ public interface ProductService extends Dao<Product, Long> {
 
     @Override
     void delete(Long id);
+
+    List<Product> findAllByEliminatedEquals(String eliminated);
 }

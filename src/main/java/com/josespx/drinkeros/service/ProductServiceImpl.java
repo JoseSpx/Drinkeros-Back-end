@@ -38,4 +38,9 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         this.productDao.deleteById(id);
     }
+
+    @Override
+    public List<Product> findAllByEliminatedEquals(String eliminated) {
+        return this.productDao.findAllByEliminatedEquals(eliminated);
+    }
 }

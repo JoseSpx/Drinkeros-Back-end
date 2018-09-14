@@ -33,11 +33,11 @@ public class Product {
     @JsonView(Basic.class)
     private String description;
 
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonView(Basic.class)
     private ProductPrice productPrice;
 
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonView(Basic.class)
     private ProductStock productStock;
 
@@ -51,6 +51,11 @@ public class Product {
     private String eliminated;
 
     public Product() {}
+
+    @PrePersist
+    public void prePersist() {
+        this.eliminated = "0";
+    }
 
     @PreUpdate
     public void preUpdate() {
