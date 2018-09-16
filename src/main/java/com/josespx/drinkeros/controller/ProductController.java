@@ -85,7 +85,7 @@ public class ProductController {
         productToUpdate.getProductPrice().setWholesale(product.getProductPrice().getWholesale());
         productToUpdate.getProductStock().setMinimun(product.getProductStock().getMinimun());
         productToUpdate.getProductStock().setPhysical(product.getProductStock().getPhysical());
-        productToUpdate.getProductStock().setRealp(product.getProductStock().getRealp());
+        productToUpdate.getProductStock().setReal(product.getProductStock().getReal());
 
         this.productService.save(productToUpdate);
         return new ResponseEntity<>(productToUpdate, HttpStatus.OK);

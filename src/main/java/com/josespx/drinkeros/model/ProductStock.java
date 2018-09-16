@@ -18,7 +18,7 @@ public class ProductStock {
 
     @Column(name = "realp")
     @JsonView(Basic.class)
-    private Double realp;
+    private Double real;
 
     @Column(name = "physical")
     @JsonView(Basic.class)
@@ -41,12 +41,12 @@ public class ProductStock {
         this.id = id;
     }
 
-    public Double getRealp() {
-        return realp;
+    public Double getReal() {
+        return real;
     }
 
-    public void setRealp(Double realp) {
-        this.realp = realp;
+    public void setReal(Double real) {
+        this.real = real;
     }
 
     public Double getPhysical() {
