@@ -37,10 +37,10 @@ public class Provider {
     @JsonView(Basic.class)
     private String phone;
 
-    @Column(name = "created_at", columnDefinition = "TIMESTAMP default now()")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", columnDefinition = "TIMESTAMP default now()")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @Column(name = "eliminated", length = 2, columnDefinition = "char(1) default '0'")
@@ -51,6 +51,8 @@ public class Provider {
     @PrePersist
     public void prePersit(){
         this.eliminated = "0";
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate

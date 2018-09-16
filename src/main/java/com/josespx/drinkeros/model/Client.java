@@ -45,16 +45,22 @@ public class Client {
     @JsonView(Basic.class)
     private TypeDocument typeDocument;
 
-    @Column(name = "created_at", columnDefinition = "TIMESTAMP default now()")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @Column(name = "eliminated", length = 2, columnDefinition = "char(1) default '0'")
     private String eliminated;
 
     public Client() {}
+
+    @PrePersist
+    public void prePersit() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 
     @PreUpdate
     public void preUpdate() {
