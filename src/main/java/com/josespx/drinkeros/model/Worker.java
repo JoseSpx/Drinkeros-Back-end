@@ -54,6 +54,7 @@ public class Worker {
 
     @PrePersist
     public void prePersist() {
+        this.eliminated = "0";
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
