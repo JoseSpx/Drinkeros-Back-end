@@ -18,4 +18,6 @@ public interface WorkerService extends Dao<Worker, Long> {
 
     @Override
     void delete(Long id);
+
+    List<Worker> findAllByEliminatedEquals(String eliminated);
 }

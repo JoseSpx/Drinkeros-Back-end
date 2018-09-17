@@ -38,4 +38,9 @@ public class WorkerServiceImpl implements WorkerService {
     public void delete(Long id) {
         this.workerDao.deleteById(id);
     }
+
+    @Override
+    public List<Worker> findAllByEliminatedEquals(String eliminated) {
+        return this.workerDao.findAllByEliminatedEquals(eliminated);
+    }
 }

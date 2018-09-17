@@ -45,7 +45,7 @@ public class WorkerController {
 
     @RequestMapping(value = "/workers", method = RequestMethod.GET, headers = "Accept=application/json")
     public ResponseEntity<List<Worker>> findAll() {
-        List<Worker> workerList = this.workerService.findAll();
+        List<Worker> workerList = this.workerService.findAllByEliminatedEquals("0");
         if (workerList == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
